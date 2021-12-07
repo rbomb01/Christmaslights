@@ -16,40 +16,56 @@
     }
 
     .bulb:nth-child(odd){
-        backgroun: #6cb6ff;
+        background: #ff0000;
         opacity: 1;
-        box-shadow: 1px 1px 15px #6cb6ff, -1px -1px 15px #6cb6ff;
+        box-shadow: 1px 1px 15px #ff0000, -1px -1px 15px #ff0000;
         animation: bulb-pulse-1 0.8s linear 0s infinite alternate;
 
     }
     .bulb:nth-child(even){
         background: #0c0;
-        opacity: .3;
+        opacity: 1;
         box-shadow: none;
         animation: bulb-pulse-2 0.8s linear 0s infinite alternate;
     }
     @keyframes bulb-pulse-1 {
         from{
-            box-shadow: 1px 1px 15px #6cb6ff, -1px -1px 15px #6cb6ff;opacity: 1;
+            box-shadow: 1px 1px 15px yellow, -1px -1px 15px yellow;opacity: 1;
         } to {box-shadow: none; opacity: .3;}
 
     }
     @keyframes bulb-pulse-2 {
         from{
-            box-shadow: none; opacity: .3;} to { box-shadow: 1px 1px 15px #0c0, -1px -1px 15px #0c0; opacity: 1;}
+            box-shadow: none; opacity: .3;} to { box-shadow: 1px 1px 15px #ffffff, -1px -1px 15px #ffffff; opacity: 1;}
 
     }
 
 </style>
 </head>
 <body>
-<div id="lights"></div>
+<div id="lights" style="text-align: center;"></div>
 <script>
-for(var i=0; i < 10; i++){
+for(var i=0; i < 600; i++){
     var bulb = document.createElement("div");
     bulb.className = "bulb";
+    var rand = Math.floor(Math.random() * 180)+1;
+    bulb.style.transform = "rotate("+rand+"deg)";
     document.getElementById("lights").appendChild(bulb);
     }
+var divs = document.querySelectorAll("div");
+
+const rnd = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
+let base = 0;
+
+divs.forEach(function(div, i) {
+    div.style.background = `hsl(
+    ${rnd(1, 360)},
+    ${rnd(1, 100)}%,
+    ${rnd(1, 35)}%
+  )`;
+});
     </script>
 </div>
 </body>
